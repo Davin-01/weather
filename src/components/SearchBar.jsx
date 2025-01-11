@@ -1,31 +1,26 @@
-import React from 'react';
-
 const SearchBar = ({ onSearch }) => {
-  const [city, setCity] = React.useState('');
-
-  const handleSubmit = (e) => {
+  const handleSearch = (e) => {
     e.preventDefault();
-    if (city.trim()) {
+    const city = e.target.elements.city.value.trim();
+    if (city) {
       onSearch(city);
-      setCity('');
     }
   };
 
   return (
     <form
-      onSubmit={handleSubmit}
-      className="flex items-center justify-center gap-4 p-4"
+      onSubmit={handleSearch}
+      className="flex justify-center items-center my-6"
     >
       <input
         type="text"
+        name="city"
         placeholder="Enter city name"
-        value={city}
-        onChange={(e) => setCity(e.target.value)}
-        className="w-full max-w-md p-3 text-sm border border-gray-300 rounded-lg shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+        className="border border-gray-300 rounded-lg p-2 w-2/3 md:w-1/2 lg:w-1/3"
       />
       <button
         type="submit"
-        className="px-6 py-2 text-white bg-blue-500 rounded-lg shadow hover:bg-blue-600 focus:outline-none"
+        className="bg-blue-500 text-white px-4 py-2 rounded-lg ml-2 hover:bg-blue-600"
       >
         Search
       </button>

@@ -1,26 +1,22 @@
-import React from 'react';
-
-const WeatherDisplay = ({ weather }) => {
-  if (!weather) {
-    return (
-      <p className="text-center text-gray-600">
-        No data to display. Search for a city!
-      </p>
-    );
-  }
-
-  const { name, main, weather: weatherDetails } = weather;
+const WeatherCard = ({ weather }) => {
+  if (!weather) return null;
 
   return (
-    <div className="p-6 mt-6 bg-white rounded-lg shadow-md">
-      <h2 className="text-2xl font-bold text-blue-600">{name}</h2>
-      <div className="mt-4 text-gray-700">
-        <p className="text-lg">Temperature: {Math.round(main.temp)}°C</p>
-        <p>Condition: {weatherDetails[0].description}</p>
-        <p>Humidity: {main.humidity}%</p>
+    <div className="bg-white shadow-lg rounded-lg p-6 max-w-sm mx-auto">
+      <h2 className="text-xl font-bold text-gray-800">{weather.city}</h2>
+      <p className="text-gray-600">{weather.description}</p>
+      <div className="flex justify-between items-center mt-4">
+        <div>
+          <p className="text-2xl font-bold">{weather.temp}°C</p>
+          <p className="text-gray-600">Temperature</p>
+        </div>
+        <div>
+          <p className="text-lg font-bold">{weather.humidity}%</p>
+          <p className="text-gray-600">Humidity</p>
+        </div>
       </div>
     </div>
   );
 };
 
-export default WeatherDisplay;
+export default WeatherCard;
